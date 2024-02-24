@@ -19,6 +19,6 @@
 
 ### User Rechte
 
-	-	Guest User:	Kann Jobs durchsuchen und Firmenprofil ansehen.
+	-	Guest User: Kann Jobs durchsuchen und Firmenprofil ansehen.
 	-	Angemeldeter User: Kann eigene Jobs erstellen, bearbeiten und löschen sowie eigene Firmenprofil verwalten.
 	-	Admin : Kann alle Jobs, Firmenprofil und User verwalten.
