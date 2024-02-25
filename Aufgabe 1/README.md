@@ -14,7 +14,7 @@
 	-	Job und Company: 	n:1 -> Viele Jobs können zu einer Firma gehören, aber eine Firma kann viele Jobs haben.
 	-	Job und Category: 	n:1 -> Viele Jobs können zu einer Category gehören, aber eine Category kann viele Jobs haben.
 	-	User und Job:		1:n -> Ein User kann viele Jobs erstellen, aber ein Job gehört nur einem User.
-	-	User und Company	1:n -> Ein User kann viele Firmen erstellen, aber eine Firma gehört nur einem User.
+	-	User und Company:	1:n -> Ein User kann viele Firmen erstellen, aber eine Firma gehört nur einem User.
 
 
 ### User Rechte
