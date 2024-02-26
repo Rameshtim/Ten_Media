@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+			$table->string('title');
+			$table->text('description');
+
+			//Foreign key for company
+			$table->unsignedBigInteger('company_id');
+			$table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+			
+			$table->unsignedBigInteger('category_id');
+			$table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });
     }
