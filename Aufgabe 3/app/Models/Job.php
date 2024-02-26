@@ -17,10 +17,10 @@ class Job extends Model
 	];
 
 	public function company() {
-		return $this->belongsTo(Company::class);
+		return $this->belongsTo(Company::class, 'company_id', 'id');
 	}
 
 	public function category() {
-		return $this->belongsTo(Category::class);
+		return $this->belongsTo(Category::class, 'category_id', 'id');
 	}
 }

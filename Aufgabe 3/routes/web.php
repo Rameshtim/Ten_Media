@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,6 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//routes ohne anmeldung
+Route::get('/job', [JobController::class, 'index'])->name('job.index');
+Route::get('/company', [CompanyController::class, 'index'])->name('company.index');
+Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
