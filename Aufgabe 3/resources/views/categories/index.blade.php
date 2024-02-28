@@ -90,7 +90,8 @@
 			<p>You are a guest</p>
 		@endif
 	</div>
-    <h1>Categories</h1>
+	<h1>Kategorien<a href="{{ route('category.create') }}"> + </a></h1>
+
     <div id="success-message"></div>
 
     @if(session()->has('success'))
@@ -109,7 +110,7 @@
     <div>
         <table>
             <tr>
-                <th>Id</th>
+                <th>Nummer</th>
                 <th>Name</th>
                 <th>Edit</th>
                 <th>Delete</th>

@@ -18,6 +18,13 @@ class CompanyController extends Controller
 		return view('companies.index', ['companies' => $companies]);
     }
 
+	public function index1()
+    {
+        // return view('companies.index');
+		$companies = Company::all();
+		return view('companies.index1', ['companies' => $companies]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */

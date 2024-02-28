@@ -18,9 +18,13 @@ class JobController extends Controller
     {
 		$jobs = Job::all();
 		return view('jobs.index', ['jobs' => $jobs]);
-        // return view('jobs.index');
     }
-
+	
+    public function index1()
+    {
+		$jobs = Job::all();
+		return view('jobs.index1', ['jobs' => $jobs]);
+    }
     /**
      * Show the form for creating a new resource.
      */

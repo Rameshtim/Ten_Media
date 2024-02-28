@@ -41,7 +41,7 @@
 
                 <div class="mt-16">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                        <a href="{{route('job.index')}}">
+						<a href="{{ Auth::check() ? route('job.index') : route('job.index1') }}">
                             <div>
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Jobs</h2>
@@ -53,7 +53,8 @@
 
                         </a>
 
-                        <a href="{{route('company.index')}}">
+						<a href="{{ Auth::check() ? route('company.index') : route('company.index1') }}">
+
                             <div>
 
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Unternehmen</h2>
@@ -64,7 +65,7 @@
                             </div>
                         </a>
 
-                        <a href="{{route('category.index')}}">
+						<a href="{{ Auth::check() ? route('category.index') : route('category.index1') }}">
                             <div>
                                 <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Kategorien</h2>
 

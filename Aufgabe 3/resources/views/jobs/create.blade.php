@@ -83,13 +83,13 @@
 		<label >Job Beschreibung:</label>
 		<textarea  name="description" rows="10" ></textarea>
 
-		<label>Unternehmen Auswählen:</label>
+		<label>Unternehmen Auswählen oder <a href="{{route('company.create')}}"> Hinzufügen:</a></label>
     	<select name="company_id">
         @foreach ($companies as $company)
             <option value="{{ $company->id }}">{{ $company->name }}</option>
         @endforeach
     	</select>
-		<label>Kategorie Auswählen:</label>
+		<label>Kategorie Auswählen oder <a href="{{route('category.create')}}"> Hinzufügen:</a>:</label>
     	<select name="category_id">
         @foreach ($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>

@@ -23,6 +23,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/job/index1', [JobController::class, 'index1'])->name('job.index1');
+Route::get('/company/index1', [CompanyController::class, 'index1'])->name('company.index1');
+Route::get('/category/index1', [CategoryController::class, 'index1'])->name('category.index1');
 
 Route::get('/dashboard', function () {
 	return view('welcome');
@@ -32,7 +35,7 @@ Route::middleware('auth')->group(function () {
 	Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-	//routes ohne anmeldung
+
 	Route::get('/job', [JobController::class, 'index'])->name('job.index');
 	Route::get('/company', [CompanyController::class, 'index'])->name('company.index');
 	Route::get('/category', [CategoryController::class, 'index'])->name('category.index');

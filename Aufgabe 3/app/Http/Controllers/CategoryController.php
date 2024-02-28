@@ -18,6 +18,12 @@ class CategoryController extends Controller
         return view('categories.index', ['categories' => $categories]);
     }
 	
+    public function index1()
+    {
+		// dd();
+		$categories = Category::all();
+        return view('categories.index1', ['categories' => $categories]);
+    }
     /**
 	 * Show the form for creating a new resource.
      */

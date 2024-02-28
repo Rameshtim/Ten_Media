@@ -126,9 +126,7 @@
 					<th>Titel</th>
 					<th>Kategorien</th>
 					<th>Unternehmen</th>
-					<th>Bearbeiten</th>
-					<th>Löschen</th>
-					<th>Details</th>
+
 				</tr>
 			</thead>
 			@php
@@ -140,19 +138,6 @@
 				<td>{{$job->title}}</td>
 				<td>{{$job->category->name ?? 'undefined'}}</td>
 				<td>{{$job->company->name}}</td>
-				<td>
-					<a href="{{route('job.edit', ['job' => $job])}}">Bearbeiten</a>
-				</td>
-				<td>
-					<form method="post" action="{{route('job.destroy', ['job' => $job])}}">
-						@csrf
-						@method('delete')
-						<input type="submit" value="Löschen">
-					</form>
-				</td>
-				<td>
-					<a href="{{ route('job.show', ['job' => $job]) }}">Details</a>
-				</td>
 			</tr>
 			@endforeach
 		</table>
