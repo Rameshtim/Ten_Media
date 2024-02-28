@@ -13,7 +13,7 @@ class Job extends Model
 		'title',
 		'description',
 		'company_id',
-		'category_id'
+		'category_id',
 	];
 
 	public function company() {

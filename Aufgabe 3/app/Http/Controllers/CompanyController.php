@@ -13,7 +13,9 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        return view('companies.index');
+        // return view('companies.index');
+		$companies = Company::all();
+		return view('companies.index', ['companies' => $companies]);
     }
 
     /**
@@ -21,7 +23,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view('companies.create');
     }
 
     /**
@@ -29,7 +31,12 @@ class CompanyController extends Controller
      */
     public function store(StoreCompanyRequest $request)
     {
-        //
+		$data = $request->only([
+			'name',
+			'description',
+		]);
+		$company = Company::create($data);
+		return redirect()->route('company.index', $company);
     }
 
     /**

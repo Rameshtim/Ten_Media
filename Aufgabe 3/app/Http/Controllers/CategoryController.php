@@ -13,24 +13,37 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('categories.index');
+		// dd();
+		$categories = Category::all();
+        return view('categories.index', ['categories' => $categories]);
+    }
+	
+    /**
+	 * Show the form for creating a new resource.
+     */
+	public function create()
+    {
+		return view('categories.create');
+    }
+	
+    /**
+	 * Store a newly created resource in storage.
+     */
+	public function store(StoreCategoryRequest $request)
+    {
+		$data = $request->only(['name']);
+		$category = Category::create($data);
+		return redirect()->route('category.index', $category);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+// 	public function store(StoreCategoryRequest $request)
+// {
+//     $data = $request->only(['title', 'description', /* add other attributes here */]);
+//     $category = Category::create($data);
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreCategoryRequest $request)
-    {
-        //
-    }
+//     return redirect()->route('category.index', $category);
+// }
+
 
     /**
      * Display the specified resource.
