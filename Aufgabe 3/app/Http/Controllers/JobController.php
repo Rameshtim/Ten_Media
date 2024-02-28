@@ -30,54 +30,25 @@ class JobController extends Controller
 		$categories = Category::all(); // Fetch all companies from the database
 		return view('jobs.create', compact('companies', 'categories'));
 	}
-	
-	 // public function create()
-    // {
-
-    //     return view('jobs.create');
-    // }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreJobRequest $request)
     {
-		$user = Auth::user();
+		// $user = Auth::user();
 		$data = $request->only([
 			'title',
 			'description',
 			'company_id',
 			'category_id',
 		]);
-		// $data['company_id'] = optional($user->company)->id;
-		// $data['category_id'] = optional($user->category)->id;
+		
 		$job = Job::create($data);
-
-		return redirect()->route('job.index', $job);
+		
+		return redirect()->route('job.index', $job)->with('success', 'Job ist gespeichert');
     }
-
-	/* 
-	use Illuminate\Support\Facades\Auth;
-
-public function store(StoreJobRequest $request)
-{
-    // Assuming there is an authenticated user and a company relationship
-    $user = Auth::user();
-
-    $data = $request->only([
-        'title',
-        'description',
-    ]);
-
-    // Include the company_id in the data
-    $data['company_id'] = $user->company->id;
-
-    $job = Job::create($data);
-
-    return redirect()->route('job.index', $job);
-}
-
-	*/
+	
     /**
      * Display the specified resource.
      */
@@ -91,22 +62,33 @@ public function store(StoreJobRequest $request)
      */
     public function edit(Job $job)
     {
-        //
+		$companies = Company::all();
+		$categories = Category::all();
+        return view('jobs.edit', compact('job', 'companies', 'categories'));
+    }
+	
+    /**
+	 * Update the specified resource in storage.
+     */
+	public function update(UpdateJobRequest $request, Job $job)
+    {
+		$data = $request->only([
+			'title',
+			'description',
+			'company_id',
+			'category_id',
+		]);
+		$job->update($data);
+		return redirect(route('job.index'))->with('success', 'Job wurde Aktualisiert');
+        
     }
 
     /**
-     * Update the specified resource in storage.
+	 * Remove the specified resource from storage.
      */
-    public function update(UpdateJobRequest $request, Job $job)
+	public function destroy(Job $job)
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Job $job)
-    {
-        //
+		$job->delete();
+		return redirect(route('job.index'))->with('success', 'Job wurde Aktualisiert');
     }
 }

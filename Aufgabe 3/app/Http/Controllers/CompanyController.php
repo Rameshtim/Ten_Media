@@ -36,38 +36,44 @@ class CompanyController extends Controller
 			'description',
 		]);
 		$company = Company::create($data);
-		return redirect()->route('company.index', $company);
+		return redirect()->route('company.index', $company)->with('success', 'Firma erfolgreich gespeichert.');
     }
-
+	
     /**
      * Display the specified resource.
      */
     public function show(Company $company)
     {
-        //
+		//
     }
-
+	
     /**
-     * Show the form for editing the specified resource.
+	 * Show the form for editing the specified resource.
      */
-    public function edit(Company $company)
+	public function edit(Company $company)
     {
-        //
+		return view('companies.edit', ['company' => $company]);
     }
 
     /**
-     * Update the specified resource in storage.
+	 * Update the specified resource in storage.
      */
     public function update(UpdateCompanyRequest $request, Company $company)
     {
-        //
+		$data = $request->only([
+			'name',
+			'description',
+		]);
+		$company->update($data);
+		return redirect(route('company.index'))->with('success', 'Firma erfolgreich Aktualisiert.');
     }
-
+	
     /**
-     * Remove the specified resource from storage.
+	 * Remove the specified resource from storage.
      */
-    public function destroy(Company $company)
+	public function destroy(Company $company)
     {
-        //
+		$company->delete();
+		return redirect(route('company.index'))->with('success', 'Firma erfolgreich gelöscht.');
     }
 }

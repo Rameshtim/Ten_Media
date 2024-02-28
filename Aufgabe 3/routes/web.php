@@ -30,9 +30,18 @@ Route::get('/category', [CategoryController::class, 'index'])->name('category.in
 Route::get('/job/create', [JobController::class, 'create'])->name('job.create');
 Route::get('/company/create', [CompanyController::class, 'create'])->name('company.create');
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category.create');
+Route::post('/job', [JobController::class, 'store'])->name('job.store');
 Route::post('/company', [CompanyController::class, 'store'])->name('company.store');
 Route::post('/category', [CategoryController::class, 'store'])->name('category.store');
-Route::post('/job', [JobController::class, 'store'])->name('job.store');
+Route::get('/job/{job}/edit', [JobController::class, 'edit'])->name('job.edit');
+Route::get('/company/{company}/edit', [CompanyController::class, 'edit'])->name('company.edit');
+Route::get('/category/{category}/edit', [CategoryController::class, 'edit'])->name('category.edit');
+Route::put('/job/{job}/update', [JobController::class, 'update'])->name('job.update');
+Route::put('/company/{company}/update', [CompanyController::class, 'update'])->name('company.update');
+Route::put('/category/{category}/update', [CategoryController::class, 'update'])->name('category.update');
+Route::delete('/job/{job}/destroy', [JobController::class, 'destroy'])->name('job.destroy');
+Route::delete('/company/{company}/destroy', [CompanyController::class, 'destroy'])->name('company.destroy');
+Route::delete('/category/{category}/destroy', [CategoryController::class, 'destroy'])->name('category.destroy');
 
 Route::get('/dashboard', function () {
 	return view('dashboard');

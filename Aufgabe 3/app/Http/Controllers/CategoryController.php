@@ -33,20 +33,12 @@ class CategoryController extends Controller
     {
 		$data = $request->only(['name']);
 		$category = Category::create($data);
-		return redirect()->route('category.index', $category);
+		return redirect()->route('category.index', $category)->with('success', 'Neue Category gespeichert');
     }
-
-// 	public function store(StoreCategoryRequest $request)
-// {
-//     $data = $request->only(['title', 'description', /* add other attributes here */]);
-//     $category = Category::create($data);
-
-//     return redirect()->route('category.index', $category);
-// }
 
 
     /**
-     * Display the specified resource.
+	 * Display the specified resource.
      */
     public function show(Category $category)
     {
@@ -56,9 +48,9 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+	public function edit(Category $category)
     {
-        //
+        return view('categories.edit', ['category' => $category]);
     }
 
     /**
@@ -66,14 +58,17 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+		$data = $request->only(['name']);
+        $category->update($data);
+		return redirect(route('category.index'))->with('success', 'Erfolgreich Aktualisiert');
     }
-
+	
     /**
-     * Remove the specified resource from storage.
+	 * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+	public function destroy(Category $category)
     {
-        //
+		$category->delete();
+		return redirect(route('category.index'))->with('success', 'Erfolgreich gelöscht');
     }
 }
