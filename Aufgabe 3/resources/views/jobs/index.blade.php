@@ -74,7 +74,25 @@
 	</style>
 </head>
 <body>
-	<h1>Job Offers</h1>
+
+	<div style="text-align: right; padding: 10px;">
+		@if (Auth::check())
+			<p>
+				<a href="{{ route('welcome') }}">Zurück zur Welcome</a> |
+				<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+				<br>{{ Auth::user()->name }}
+			</p>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				@csrf
+			</form>
+		@else
+			<p><a href="{{ route('welcome') }}">Go back to Welcome</a></p>
+			<p>You are a guest</p>
+		@endif
+	</div>
+
+
+	<h1>Job Angebote</h1>
 	<div id="success-message"></div>
 
 	@if(session()->has('success'))
@@ -91,21 +109,25 @@
 	@endif
 
 	<div>
-		<table border="1">
-			<tr>
-				<th>Id</th>
-				<th>Title</th>
-				<th>Description</th>
-				<th>Category</th>
-				<th>Company</th>
-				<th>Edit</th>
-				<th>Delete</th>
-			</tr>
+		<table>
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Titel</th>
+					<th>Kategorien</th>
+					<th>Unternehmen</th>
+					<th>Bearbeiten</th>
+					<th>Löschen</th>
+					<th>Details</th>
+				</tr>
+			</thead>
+			@php
+				$counter = 1;
+			@endphp
 			@foreach ($jobs as $job)
 			<tr>
-				<td>{{$job->id}}</td>
+				<td>{{$counter++}}</td>
 				<td>{{$job->title}}</td>
-				<td>{{$job->description}}</td>
 				<td>{{$job->category->name ?? 'undefined'}}</td>
 				<td>{{$job->company->name}}</td>
 				<td>
@@ -117,6 +139,9 @@
 						@method('delete')
 						<input type="submit" value="Delete">
 					</form>
+				</td>
+				<td>
+					<a href="{{ route('job.show', ['job' => $job]) }}">Details</a>
 				</td>
 			</tr>
 			@endforeach

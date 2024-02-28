@@ -40,6 +40,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+			'role' => $this->getInitialRole($request->email),
         ]);
 
         event(new Registered($user));
@@ -48,4 +49,9 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+
+	private function getInitialRole(string $email) : string {
+		$userCount = User::count();
+		return $userCount <= 3 ? User::ROLE_ADMIN : User::ROLE_USER;
+	}
 }

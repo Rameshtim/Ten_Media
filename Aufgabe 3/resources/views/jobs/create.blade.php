@@ -48,6 +48,21 @@
     </style>
 </head>
 <body>
+	<div style="text-align: right; padding: 10px;">
+		@if (Auth::check())
+			<p>
+				<a href="{{ route('welcome') }}">Zurück zur Welcome</a> |
+				<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+				<br>{{ Auth::user()->name }}
+			</p>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				@csrf
+			</form>
+		@else
+			<p><a href="{{ route('welcome') }}">Go back to Welcome</a></p>
+			<p>You are a guest</p>
+		@endif
+	</div>
 		<div>
 			@if($errors->any())
 			<ul>
@@ -62,24 +77,25 @@
 	<form method="post" action="{{route('job.store')}}">
 		@csrf
 		@method('post')
-		<label>Job Title:</label>
+		<label>Job Titel:</label>
 		<input type="text" name="title" >
 
-		<label >Job Description:</label>
+		<label >Job Beschreibung:</label>
 		<textarea  name="description" rows="10" ></textarea>
 
-		<label>Select Company:</label>
+		<label>Unternehmen Auswählen:</label>
     	<select name="company_id">
         @foreach ($companies as $company)
             <option value="{{ $company->id }}">{{ $company->name }}</option>
         @endforeach
     	</select>
-		<label>Select Category:</label>
+		<label>Kategorie Auswählen:</label>
     	<select name="category_id">
         @foreach ($categories as $category)
             <option value="{{ $category->id }}">{{ $category->name }}</option>
         @endforeach
     	</select><br>
+		<br>
 		<button type="submit">Submit Job</button>
 	</form>
 

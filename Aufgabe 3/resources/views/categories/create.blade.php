@@ -48,6 +48,21 @@
     </style>
 </head>
 <body>
+	<div style="text-align: right; padding: 10px;">
+		@if (Auth::check())
+			<p>
+				<a href="{{ route('welcome') }}">Zurück zur Welcome</a> |
+				<a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+				<br>{{ Auth::user()->name }}
+			</p>
+			<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+				@csrf
+			</form>
+		@else
+			<p><a href="{{ route('welcome') }}">Go back to Welcome</a></p>
+			<p>You are a guest</p>
+		@endif
+	</div>
 		<div>
 			@if($errors->any())
 			<ul>
@@ -64,9 +79,6 @@
 		@method('post')
 		<label>Category Title:</label>
 		<input type="text" name="name" >
-<!-- 
-		<label >Category Description:</label>
-		<textarea  name="categoryDescription" rows="10" ></textarea> -->
 
 		<button type="submit">Submit Category</button>
 	</form>

@@ -18,6 +18,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+	 const ROLE_USER = 'user';
+	 const ROLE_ADMIN = 'admin';
+
     protected $fillable = [
         'name',
         'email',
@@ -47,6 +51,10 @@ class User extends Authenticatable
 	public function company()
 	{
 		return $this->hasMany(Company::class);
+	}
+
+	public function isAdmin() : bool {
+		return $this->role == self::ROLE_ADMIN;
 	}
 
 
